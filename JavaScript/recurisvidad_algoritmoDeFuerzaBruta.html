@@ -1,0 +1,55 @@
+<script>
+    let arr_comp =      //declaro array bidimensional con todos los productos disponibles en posicion [0] y sus precios en posicion [1]
+    [
+        ["papa","harina","tomate","cebolla","ajo","sal", "pan", "ciboulette", "boniato","salame","zapallo","girasol","salchipapa", "mostaza", "mayonesa", "curry", "pimenton"],
+        [13,35,57,13,78,96,100,63,87,62,78,25,45,6,46,74,3]
+    ],maxProds, arr_productos = [];
+
+    const FB_CICLOS = 3000;                                                                         //declaro constante con numero de ciclos de iteracion para funcion recursiva
+    const recursividad_compra = (i) =>                                                              //declaro arrow function que recibe argumento i (utilizado para controlar ciclos, cada ciclo sera una instancia de i+1 desde cero)
+    {
+        if(i>FB_CICLOS) return;                                                                     //cuando la cantidad de ciclos de la funcion recursiva supere el maximo establecido en la constante se terminara la recursividad
+    
+        (()=>                                                                                       //declaracion de arrow function anonima (se autoejecuta una vez se declara. al instanciarse en el mismo momnento de declararse no necesita nombre)
+        {
+            let arr_aleatorios = [], arr_prod_list = [], costo = 0, cant_elementos_compra = 0;      //arr_aleatorios almacenara los numeros aleatorios que ya se utilizaron, arr_prod_list almacenara los productos seleccionados aleatoriamente, costo sera una variable incremental que ira autosumandose al valor de cada producto aleatorio seleccionado,  cant_elem_compra ira guardando cuantos productos se han seleccionado
+
+            while(costo<200)                                                                        //mientras que la variable costo sea menor que 200 ire seleccionando y agregando productos aleatoriamente.
+            {
+                random = Math.floor(Math.random() * arr_comp[0].length-1);                          //creo un numero aleatorio de 0 al maximo de items en lista de productos (16 = arr_comp[0].length-1)
+                
+                if(!(arr_aleatorios.filter(item => item === random).length > 0))                    //filtro el array que guarda numeros aleatorios, si encuentra que ese array posee un valor igual al numero random, pues no accede a if (por eso se niega al principio con !)
+                {
+                    arr_aleatorios.push(random);                                                    //como al llegar aqui el numero random no puede existir en el array de numeros aleatorios, lo almaceno alli para no poder volver a seleccionarlo
+                    arr_prod_list.push(arr_comp[0][random]);                                        //en el array de lista de productos de compra actual guardo el nombre del item aleatorio que seleccione (arr_comp[0[random]) donde random es su indice
+                    costo+=arr_comp[1][random];                                                     //a la variable costo le sumo el valor del costo del producto actual (arr_comp[1][random])
+                    cant_elementos_compra++;                                                        //sumo uno a la variable que almacena la cantidad de productos comprados actualmente
+                }
+            }
+
+            if(Boolean(maxProds))                                        //si la variable global maxProds (que almacena el numero maximo de productos que se pudieron comprar sin llegar a gastar mas de 200) es true (o sea, es un valor)
+            {
+                if(cant_elementos_compra>maxProds)                       //comparo si la cantidad de productos comprados actualmente supera el maximo historico almacenado
+                {
+                    arr_productos = arr_prod_list;                       //en caso de que la cantida de productos comprados actualmente sea superior al historico, guardo mi lista de productos de la compra en la variable global 
+                    maxProds = cant_elementos_compra;                    //cambio el valor de maximo historico por el actual.
+                }
+            }else                                                        //en caso de que el maximo historico no sea un valor significa que nunca se le asigno nada, por lo que le almaceno los valores de la compra actual sean cuales fueran.
+            {
+                arr_productos = arr_prod_list;
+                maxProds = cant_elementos_compra;
+            }
+            
+        })();
+
+        return recursividad_compra(i+1);                                //auto llamo a funcion recursviva aumentando ciclo en +1
+    }
+
+    recursividad_compra(0);                                             //invoco funcion recursiva
+
+    document.write(`---<strong>lista de todos los productos disponible [nombre,precio]</strong>---<br>`);
+    for(let i=0; i<=arr_comp[0].length-1; i++) document.write(`${arr_comp[0][i]} [${arr_comp[1][i]}], ` );                                                  //muestro todos los items que existen
+    document.write(`<br><br><strong>numero de ciclos asignados al algoritmo de fuerza bruta: ${FB_CICLOS}.</strong>`);                                      //muestro cantidad de ciclos de fuerza bruta a realizar (capacidad de computo)
+    document.write(`<br>lista de productos que componen la compra: ${arr_productos}.`);                                                                     //muestro lista de productos almacenada con los que fueron la compra de mayor numero (De items)
+    document.write("<br>la cantidad maxima de productos que se pudo calcular a comprar sin superar los 200 pesos fue <strong>", maxProds, "</strong>.");    //muestro la cantidad de items comprados maximo a un valor total no mayor a 200
+</script>
