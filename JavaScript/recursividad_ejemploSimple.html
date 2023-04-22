@@ -1,14 +1,15 @@
 <script>
-    const x = (i) =>
+    const x = (i) =>                //declaro arrow function x, recibe argumento i
     {
-        if(i>10)
+        if(i>10)                    //control de recursividad: establezco que la funcion recursiva se "detenga" de autoinvocar cuando i sea mayor que 10
         {
-            return;
+            return;                 //return void es un "tecnica" para que se finalice el ciclo. 
         }
 
-        console.log(i);
-        return x(i+1);
+        document.write(i, "<br>");             //accion de recursividad: en cada instancia de la funcion recursiva mostrare argumento i
+
+        return x(i+1);              //recursividad call: auto instancio a si mima (llamando a x) y pasando como argumento i = i+1
     }
 
-    x(x);
+    x(0);                           //invoco funcion x pasandole 0 como valor inicial de argumento i.
 </script>
