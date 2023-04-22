@@ -1,0 +1,14 @@
+<script>
+    const x = (i) =>
+    {
+        if(i>10)
+        {
+            return;
+        }
+
+        console.log(i);
+        return x(i+1);
+    }
+
+    x(x);
+</script>
