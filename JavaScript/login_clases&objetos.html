@@ -1,0 +1,29 @@
+<script>
+    let usuarios_bd = [];
+
+    class Usuario 
+    {
+        constructor(nombre,pass)
+        {
+            this.nombre = nombre;
+            this.pass = pass;
+        }
+    }
+
+    function crearUsuario(usr, contra)
+    {
+        nuevoUsuario = new Usuario(usr,contra);
+        usuarios_bd.unshift(nuevoUsuario);
+    }
+
+    function enlistarUsuarios()
+    {
+        for(const [k,v] of usuarios_bd.entries())
+        {
+            console.log(`la posicion del usr en el array es:${k}.\n su usuario es: ${v.nombre} y su contraseña es ${v.pass}`);
+        }
+    }
+
+    crearUsuario("chris","123");
+    enlistarUsuarios();
+</script>
