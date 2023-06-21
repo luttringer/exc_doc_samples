@@ -16,6 +16,13 @@ const lineas =
         trayecto: ["montevideo", "toledo", "sauce", "san jacinto", "atlantida", "costa azul", "piriapolis"], 
         tiempo_reco:[0 , 40 , 55 , 120 , 140 , 165 , 225]
     },
+    {
+        nombre:"C1", 
+        hora_salidas: [[18,00] , [20,00]], 
+        cantidad_asientos: 42, 
+        trayecto: ["xxx","nuevo centro","canelones", "florida"], 
+        tiempo_reco:[0 , 15, 60 , 120]
+    },
 ];
 
 //click en boton consulta
@@ -97,4 +104,3 @@ function sumar_horas([...array_partida], minutos_suma) //recibo dos valores, un 
 
     return array_partida;
 }
-

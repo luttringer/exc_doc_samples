@@ -1,0 +1,17 @@
+#contProductos 
+{
+    width: 100%;
+    height: 50vh;
+    background-color: antiquewhite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#contProductos>div 
+{
+    width: 20vw;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+}
