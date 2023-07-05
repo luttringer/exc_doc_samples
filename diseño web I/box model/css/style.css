@@ -1,0 +1,39 @@
+div
+{
+	width: 150px;
+	height: 150px;
+	background-color: pink;
+	display: block;
+	border: 1px solid white;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-family: 'Fira Code', monospace;
+	font-size: 0.8rem;
+	box-sizing: border-box;
+}
+
+.contenedor_uno 
+{
+	margin: 7px;
+}
+.contenedor_dos 
+{
+	margin-bottom: 15px;
+}
+
+.contenedor_tres
+{
+	padding: 15px;
+	box-sizing: border-box;
+}
+
+.contenedor_tres>div 
+{
+	height: 75px;
+	width: 75px;
+	text-align: center;
+	background-color: violet;
+	border: none;
+	margin: 1px;
+}
